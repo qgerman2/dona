@@ -15,14 +15,14 @@ w3_lin = 0
 w4_lin = 0
 
 //Constantes
-I_xx = 5e-3
-I_yy = 5e-3
-I_zz = 10e-3
-k = 3e-6
-d = 1e-6
+I_xx = 8.15e-2
+I_yy = 8.15e-2
+I_zz = 1.28e-1
 L = 0.3
+k = 3e-6
+d = 7.5e-7
 g = 9.81
-m = 0.5
+m = 8.01
 
 slider = []
 
@@ -40,7 +40,7 @@ function setup() {
 	frameRate(60)
 	
 	for (let i = 0; i < 4; i++) {
-		slider[i] = createSlider(w_estable - 25, w_estable + 25, w_estable, 0.2)
+		slider[i] = createSlider(w_estable - 25, w_estable + 25, w_estable, 2)
 		slider[i].position(550, 40 + i * 25)
 		slider[i].style('width', '500px')
 	}
@@ -52,7 +52,7 @@ function setup() {
 			slider[i].value(w_estable)
 		}
 	});
-	
+	console.log("1/60")
 	button2 = createButton("Respawn")
 	button2.position(650, 10)
 	button2.mousePressed(() => {
@@ -93,7 +93,7 @@ function simular() {
 	dY_lin = pasoLinealizado(Y_lin)
 	for (let i = 0; i <= 15; i++) {
 		Y[i] = Y[i] + dY[i] * 1/60
-		Y_lin[i] = Y_lin[i] + dY_lin[i] * 1/60 
+		Y_lin[i] = Y_lin[i] + dY_lin[i] * 1/60
 	}
 }
 
@@ -165,10 +165,10 @@ function draw() {
 		"\np: " + Yprint[7] + "\nq: " + Yprint[8] + "\nr: " + Yprint[9]
 		, -350, -250)
 	text(
-		"w1 rpm: " + Math.trunc(slider[0].value() * 9.5493) + " \n" +
-		"w2 rpm: " + Math.trunc(slider[1].value() * 9.5493) + " \n" +
-		"w3 rpm: " + Math.trunc(slider[2].value() * 9.5493) + " \n" +
-		"w4 rpm: " + Math.trunc(slider[3].value() * 9.5493) + " \n"
+		"w1 rad/s: " + Math.trunc(slider[0].value()) + " \n" +
+		"w2 rad/s: " + Math.trunc(slider[1].value()) + " \n" +
+		"w3 rad/s: " + Math.trunc(slider[2].value()) + " \n" +
+		"w4 rad/s: " + Math.trunc(slider[3].value()) + " \n"
 		, 0, -250)
 }
 
